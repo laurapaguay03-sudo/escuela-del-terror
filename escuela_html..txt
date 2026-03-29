@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Un día en el colegio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #fff;
+      transition: 1s;
+      color: #000;
+    }
+
+    #personaje {
+      width: 150px;
+      height: 200px;
+      transition: transform 0.5s;
+    }
+
+    #escena {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #escena img {
+      width: 100%;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #chat {
+      width: 90%;
+      max-width: 500px;
+      margin: 20px auto;
+      display: flex;
+      gap: 10px;
+    }
+
+    #mensaje {
+      flex: 1;
+      padding: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="titulo">🏫 Un día en el colegio</h1>
+  <div id="escena">
+    <img id="fondo" src="imagenes/fondo1.png" alt="Fondo de la escuela">
+    <img id="personaje" src="imagenes/personaje1.png" alt="Tu personaje">
+  </div>
+  <p id="texto">Te despiertas para ir a clases...</p>
+
+  <button onclick="avanzar()">Continuar</button>
+
+  <div id="chat">
+    <input type="text" id="mensaje" placeholder="Escribe algo para decirle a un personaje">
+    <button onclick="enviarMensaje()">Enviar</button>
+  </div>
+
+  <audio id="sonidoRaro" src="sonidos/creepy-noise.mp3"></audio>
+
+  <script>
+    let dia = 1;
+
+    function avanzar() {
+      dia++;
+
+      const texto = document.getElementById("texto");
+      const fondo = document.getElementById("fondo");
+      const personaje = document.getElementById("personaje");
+      const body = document.body;
+
+      if (dia == 2) {
+        texto.innerHTML = "Llegas a la escuela. Todo parece normal 😊";
+        fondo.src = "imagenes/fondo2.png";
+      }
+
+      if (dia == 3) {
+        texto.innerHTML = "Sientes que alguien te está mirando...";
+      }
+
+      if (dia == 4) {
+        body.style.backgroundColor = "#eee";
+        texto.innerHTML = "Escuchas un ruido en el pasillo...";
+        document.getElementById("sonidoRaro").play();
+        fondo.src = "imagenes/fondo3.png";
+      }
+
+      if (dia == 5) {
+        body.style.backgroundColor = "#ccc";
+        document.getElementById("titulo").innerHTML = "¿Estás sola?";
+        texto.innerHTML = "...";
+      }
+
+      if (dia == 6) {
+        body.style.backgroundColor = "#888";
+        body.style.color = "#fff";
+        texto.innerHTML = "No hay nadie en la escuela...";
+      }
+
+      if (dia == 7) {
+        body.style.backgroundColor = "black";
+        document.getElementById("titulo").innerHTML = "👁️";
+        texto.innerHTML = "Te estaba esperando...";
+        document.getElementById("sonidoRaro").play();
+        personaje.style.transform = "scale(1.2)";
+      }
+
+      if (dia > 7) {
+        body.innerHTML = "<h1 style='color:red'>NO DEBISTE VENIR HOY</h1>";
+      }
+    }
+
+    function enviarMensaje() {
+      const input = document.getElementById("mensaje");
+      const mensaje = input.value.trim();
+      if (mensaje) {
+        alert("Tu personaje dice: " + mensaje);
+        input.value = "";
+      }
+    }
+  </script>
+
+</body>
+</html>

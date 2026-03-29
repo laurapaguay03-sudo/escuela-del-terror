@@ -1,0 +1,9 @@
+Mi-Juego/
+│ index.html
+│ imagenes/
+│   fondo1.png
+│   fondo2.png
+│   fondo3.png
+│   personaje1.png
+│ sonidos/
+│   creepy-noise.mp3
